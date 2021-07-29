@@ -1,5 +1,10 @@
 # Project to test Liquibase
 
+This is a lab for playing around with Liquibase and Postgres DB.
+
+Before start please create proper configurations files from all *.example extensions according to your needs.
+
+
 To start docker-compose stack:
 
 ```bash
@@ -36,4 +41,10 @@ docker-compose run --rm liquibase <command-name>
 To perform update use this command:
 ```bash
 docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties update
+```
+
+##
+To destroy the lab run
+```bash
+docker-compose down
 ```

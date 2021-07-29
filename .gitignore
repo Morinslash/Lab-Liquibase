@@ -1,2 +1,3 @@
 database.env
 src/liquibase.properties
+src/dbchangelog.xml
