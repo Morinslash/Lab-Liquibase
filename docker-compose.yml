@@ -1,0 +1,11 @@
+version: '3'
+
+networks:
+  liquibase:
+
+services:
+  postgres:
+    image: postgres:12.7
+    container_name: postgres
+    env_file: 
+      - database.env
