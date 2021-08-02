@@ -1,7 +1,11 @@
 # Project to test Liquibase
 
-This is a lab for playing around with Liquibase and Postgres DB.
+Lab for Liquibase and Postgres DB using **Migration-Based** approach.
 
+![alt text](./DocImages/CI_CD%20Pipeline%20Phase%204%20-%20Migration-Based%20Schema.jpg)
+
+---
+## Setup
 Before start please create proper configurations files from all *.example extensions according to your needs.
 
 
@@ -19,6 +23,8 @@ docker-compose exec <service-name> sh
 ## PgAdmin
 
 To access PgAdmin go to http://localhost:5050
+
+Defaults:
 ```
 username: pgadmin4@pgadmin.org
 password: admin
