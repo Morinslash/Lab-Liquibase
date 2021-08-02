@@ -49,6 +49,15 @@ To perform update use this command:
 docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties update
 ```
 
+To perform rollback with count of changeset:
+```bash
+docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties rollbackCount <value>
+```
+
+To perform rollback to specific tag:
+```bash
+docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties rollback <tag>
+```
 ##
 To destroy the lab run
 ```bash

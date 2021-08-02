@@ -15,12 +15,28 @@
             <column name="Status" type="VARCHAR(100)"/>
         </createTable>
     </changeSet>
-
+    
     <changeSet author="liquibase" id="2">
+        <tagDatabase tag="v1"/>
+    </changeSet>
+
+    <changeSet author="liquibase" id="3">
         <loadData encoding="UTF-8"
             file="./changelog/data/users.csv"
             separator=","
-            tableName="Users">
-        </loadData>
+            tableName="Users"
+        />
+        <rollback>
+            <delete tableName="Users">
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet author="liquibase" id="4">
+        <renameColumn columnDataType="VARCHAR(255)"
+            newColumnName="Email"
+            oldColumnName="User-Email"
+            tableName="Users"
+        />
     </changeSet>
 </databaseChangeLog>
