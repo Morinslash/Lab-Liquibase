@@ -62,10 +62,43 @@
     <changeSet author="liquibase" id="8">
         <dropView schemaName="public"
             viewName="Users"/>
+
+        <rollback>
+            <createView schemaName="public"
+                encoding="UTF-8"
+                viewName="Users">
+                select * from public."Customers"
+            </createView>
+        </rollback>
     </changeSet>
 
     <changeSet author="liquibase" id="9">
         <tagDatabase tag="rename_table_Users_to_Customers_transition_end"/>
     </changeSet>
 
+    <changeSet author="liquibase" id="10">
+        <addColumn schemaName="public"
+            tableName="Customers">
+            <column name="First_Name"
+                afterColumn="Name"
+                type="VARCHAR(120)">
+            </column>
+            <column name="Last_Name"
+                afterColumn="First_Name"
+                type="VARCHAR(120)">
+            </column>
+        </addColumn>
+        <sqlFile path="./changelog/sql/split-name.sql"/>
+        <sqlFile path="./changelog/sql/name-trigger.sql" splitStatements="false"/>
+
+        <rollback>
+            <sqlFile path="./changelog/sql/join-name.sql"/>
+            <sqlFile path="./changelog/sql/drop-trigger.sql" splitStatements="false"/>
+            <dropColumn schemaName="public"
+                tableName="Customers">
+                <column name="First_Name"/>
+                <column name="Last_Name"/>
+            </dropColumn>
+        </rollback>
+    </changeSet>
 </databaseChangeLog>
