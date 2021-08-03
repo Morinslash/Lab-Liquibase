@@ -20,7 +20,6 @@
             </delete>
         </rollback>
     </changeSet>
-
 <include file="./changelog/partials/rename-UserEmail-to-Email.xml"/>
 <include file="./changelog/partials/rename-table-Users-to-Customers.xml"/>
 <include file="./changelog/partials/split-column-Name-to-First-and-Last-Name.xml"/>

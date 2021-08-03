@@ -15,7 +15,7 @@
 </changeSet>
 
 <changeSet author="liquibase" id="5">
-    <tagDatabase tag="update_user-email_to_email"/>
+    <tagDatabase tag="update_UserEmail_to_Email"/>
 </changeSet>
 
 </databaseChangeLog>

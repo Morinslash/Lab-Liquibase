@@ -41,6 +41,7 @@
         tableName="Customers">
         <column name="Name"/>
     </dropColumn>
+    <sqlFile path="./changelog/sql/SplitNameToFirstAndLast/drop-trigger.sql" splitStatements="false"/>
     <rollback>
         <addColumn schemaName="public"
             tableName="Customers">
@@ -49,6 +50,8 @@
                 type="VARCHAR(255)">
             </column>
         </addColumn>
+        <sqlFile path="./changelog/sql/SplitNameToFirstAndLast/name-trigger.sql" splitStatements="false"/>
+        <sqlFile path="./changelog/sql/SplitNameToFirstAndLast/join-name.sql"/>
     </rollback>
 </changeSet>
 
