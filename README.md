@@ -44,9 +44,14 @@ To execute commands for Liquibase
 docker-compose run --rm liquibase <command-name>
 ```
 
-To perform update use this command:
+To perform full update use this command:
 ```bash
 docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties update
+```
+
+To update to specific tag:
+```bash
+docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties updateToTag <tag>
 ```
 
 To perform rollback with count of changeset:
@@ -58,8 +63,15 @@ To perform rollback to specific tag:
 ```bash
 docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties rollback <tag>
 ```
+
+If changes are made to the changelog migrations that were already migrated Liquibase will throw CheckSum error, to solve this issue use:
+*NOT IN PRODUCTION*
+```bash
+docker-compose run --rm liquibase --defaultsFile=/liquibase/changelog/liquibase.properties clearCheckSums
+```
 ##
 To destroy the lab run
 ```bash
 docker-compose down
 ```
+

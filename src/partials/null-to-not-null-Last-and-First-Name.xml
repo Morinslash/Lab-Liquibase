@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<databaseChangeLog  
+  xmlns="http://www.liquibase.org/xml/ns/dbchangelog"  
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+  xmlns:pro="http://www.liquibase.org/xml/ns/pro"  
+  xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
+      http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
+
+<changeSet author="liquibase" id="14">
+    <addDefaultValue columnName="Last_Name"
+        defaultValue="example_default"
+        schemaName="public"
+        tableName="Customers"/>
+    <addNotNullConstraint columnName="Last_Name"
+        constraintName="last_name"
+        schemaName="public"
+        tableName="Customers"
+        validate="true"/>        
+    <addDefaultValue columnName="First_Name"
+        defaultValue="example_default"
+        schemaName="public"
+        tableName="Customers"/>
+    <addNotNullConstraint columnName="First_Name"
+        constraintName="first_name"
+        schemaName="public"
+        tableName="Customers"
+        validate="true"/>  
+</changeSet>
+
+<changeSet author="liquibase" id="15">
+    <tagDatabase tag="nullable_to_notnullable_First_Last_Name_transition_start"/>
+</changeSet>
+
+<changeSet author="liquibase" id="16">
+    <dropDefaultValue columnName="Last_Name"
+        schemaName="public"
+        tableName="Customers"/>
+    <dropDefaultValue columnName="First_Name"
+        schemaName="public"
+        tableName="Customers"/>
+    <rollback>
+        <addDefaultValue columnName="Last_Name"
+            defaultValue="example_default"
+            schemaName="public"
+            tableName="Customers"/>
+        <addDefaultValue columnName="First_Name"
+            defaultValue="example_default"
+            schemaName="public"
+            tableName="Customers"/>
+    </rollback>    
+</changeSet>
+
+<changeSet author="liquibase" id="17">
+    <tagDatabase tag="nullable_to_notnullable_First_Last_Name_transition_end"/>
+</changeSet>
+
+</databaseChangeLog> 
