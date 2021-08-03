@@ -5,20 +5,9 @@
   xmlns:pro="http://www.liquibase.org/xml/ns/pro"  
   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd
       http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.2.xsd">
-    <changeSet author="liquibase" id="1">
-        <createTable tableName="Users">
-            <column autoIncrement="true" name="id" type="INTEGER">
-                <constraints nullable="false" primaryKey="true" primaryKeyName="user_pkey"/>
-            </column>
-            <column name="Name" type="VARCHAR(255)"/>
-            <column name="User-Email" type="VARCHAR(255)"/>
-            <column name="Status" type="VARCHAR(100)"/>
-        </createTable>
-    </changeSet>
     
-    <changeSet author="liquibase" id="2">
-        <tagDatabase tag="create_users_table"/>
-    </changeSet>
+<include file="./changelog/partials/create-users-table.xml"/>
+<!-- Load data to Users table  -->
 
     <changeSet author="liquibase" id="3">
         <loadData encoding="UTF-8"
@@ -32,73 +21,7 @@
         </rollback>
     </changeSet>
 
-    <changeSet author="liquibase" id="4">
-        <renameColumn columnDataType="VARCHAR(255)"
-            newColumnName="Email"
-            oldColumnName="User-Email"
-            tableName="Users"
-        />
-    </changeSet>
-
-    <changeSet author="liquibase" id="5">
-        <tagDatabase tag="update_user-email_to_email"/>
-    </changeSet>
-
-    <changeSet author="liquibase" id="6">
-        <renameTable schemaName="public"
-            newTableName="Customers"
-            oldTableName="Users"/>
-        <createView schemaName="public"
-            encoding="UTF-8"
-            viewName="Users">
-            select * from public."Customers"
-        </createView>
-    </changeSet>
-
-    <changeSet author="liquibase" id="7">
-        <tagDatabase tag="rename_table_Users_to_Customers_transition_start"/>
-    </changeSet>
-
-    <changeSet author="liquibase" id="8">
-        <dropView schemaName="public"
-            viewName="Users"/>
-
-        <rollback>
-            <createView schemaName="public"
-                encoding="UTF-8"
-                viewName="Users">
-                select * from public."Customers"
-            </createView>
-        </rollback>
-    </changeSet>
-
-    <changeSet author="liquibase" id="9">
-        <tagDatabase tag="rename_table_Users_to_Customers_transition_end"/>
-    </changeSet>
-
-    <changeSet author="liquibase" id="10">
-        <addColumn schemaName="public"
-            tableName="Customers">
-            <column name="First_Name"
-                afterColumn="Name"
-                type="VARCHAR(120)">
-            </column>
-            <column name="Last_Name"
-                afterColumn="First_Name"
-                type="VARCHAR(120)">
-            </column>
-        </addColumn>
-        <sqlFile path="./changelog/sql/split-name.sql"/>
-        <sqlFile path="./changelog/sql/name-trigger.sql" splitStatements="false"/>
-
-        <rollback>
-            <sqlFile path="./changelog/sql/join-name.sql"/>
-            <sqlFile path="./changelog/sql/drop-trigger.sql" splitStatements="false"/>
-            <dropColumn schemaName="public"
-                tableName="Customers">
-                <column name="First_Name"/>
-                <column name="Last_Name"/>
-            </dropColumn>
-        </rollback>
-    </changeSet>
+<include file="./changelog/partials/rename-UserEmail-to-Email.xml"/>
+<include file="./changelog/partials/rename-table-Users-to-Customers.xml"/>
+<include file="./changelog/partials/split-column-Name-to-First-and-Last-Name.xml"/>
 </databaseChangeLog>
