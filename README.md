@@ -1,5 +1,7 @@
 # Project to test Liquibase
 
+[Liquibase documentation](https://docs.liquibase.com/change-types/community/home.html)
+
 Lab for Liquibase and Postgres DB using **Migration-Based** approach.
 
 ![alt text](./DocImages/CI_CD%20Pipeline%20Phase%204%20-%20Migration-Based%20Schema.jpg)
@@ -74,4 +76,3 @@ To destroy the lab run
 ```bash
 docker-compose down
 ```
-
