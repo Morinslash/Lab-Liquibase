@@ -4,7 +4,9 @@
 
 Lab for Liquibase and Postgres DB using **Migration-Based** approach.
 
-![alt text](./DocImages/CI_CD%20Pipeline%20Phase%204%20-%20Migration-Based%20Schema.jpg)
+For details about each migration look into **Documentation** folder
+
+![](./DocImages/Migration-Based%20Schema.jpg)
 
 ---
 ## Setup
