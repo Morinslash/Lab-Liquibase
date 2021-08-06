@@ -1,4 +1,7 @@
 # Project to test Liquibase
+This project should be use to get familiar with Liquibase tool, getting familiar of the syntax and how to write properly database migration. 
+
+It also contains example GitLab CI pipeline that can automatically validate migrations and detect drifts in DB schema using Liquibase tool.
 
 [Liquibase documentation](https://docs.liquibase.com/change-types/community/home.html)
 
