@@ -34,6 +34,14 @@
     </rollback>
 </changeSet>
 
+<changeSet id="test-2" author="liquibase" context="test">
+  <preConditions onFail="HALT" onError="HALT">
+    <not>
+        <viewExists viewName="Users"/>
+    </not>
+  </preConditions>
+</changeSet>
+
 <changeSet author="liquibase" id="9">
     <tagDatabase tag="rename_table_Users_to_Customers_transition_end"/>
 </changeSet>
